@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "netatmo-thermostat"
+  site-url: "https://kafkasl.github.io/netatmo-thermostat"
+  description: "A simple Python SDK for the Netatmo Energy API (thermostats)."
+  repo-branch: main
+  repo-url: "https://github.com/kafkasl/netatmo-thermostat"
