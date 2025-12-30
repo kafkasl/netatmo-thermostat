@@ -10,7 +10,7 @@ from fastcore.utils import patch
 from fastcore.xtras import dict2obj
 from httpx import get as xget, post as xpost
 
-# %% ../nbs/00_core.ipynb 15
+# %% ../nbs/00_core.ipynb 14
 class Thermostat:
     base = 'https://api.netatmo.com'
     
@@ -20,7 +20,7 @@ class Thermostat:
         self.access_token = access_token or os.getenv('ACCESS_TOKEN')
         self.refresh_token = refresh_token or os.getenv('REFRESH_TOKEN')
 
-# %% ../nbs/00_core.ipynb 17
+# %% ../nbs/00_core.ipynb 16
 @patch
 def _refresh(self:Thermostat):
     r = xpost(f'{self.base}/oauth2/token', data={
@@ -33,7 +33,7 @@ def _refresh(self:Thermostat):
     self.access_token, self.refresh_token = d['access_token'], d['refresh_token']
     return d
 
-# %% ../nbs/00_core.ipynb 19
+# %% ../nbs/00_core.ipynb 18
 @patch
 def _request(self:Thermostat,
     endpoint:str, # the endpoint to query
@@ -54,16 +54,16 @@ def _request(self:Thermostat,
     return dict2obj(rj.get('body', rj))
 
 
-# %% ../nbs/00_core.ipynb 23
+# %% ../nbs/00_core.ipynb 22
 @patch
 def homesdata(self:Thermostat):
     return self._request('homesdata')
 
-# %% ../nbs/00_core.ipynb 28
+# %% ../nbs/00_core.ipynb 27
 @patch
 def homestatus(self:Thermostat, home_id): return self._request('homestatus', data={'home_id': home_id})
 
-# %% ../nbs/00_core.ipynb 33
+# %% ../nbs/00_core.ipynb 32
 @patch
 def getroommeasure(self:Thermostat,
     home_id:str,   # Home ID
@@ -79,7 +79,7 @@ def getroommeasure(self:Thermostat,
     if end: d['date_end'] = end
     return self._request('getroommeasure', data=d)
 
-# %% ../nbs/00_core.ipynb 40
+# %% ../nbs/00_core.ipynb 39
 @patch
 def setroomthermpoint(self:Thermostat,
     home_id:str,   # Home ID
@@ -100,7 +100,7 @@ def room_temperatures(self:Thermostat, home_id: str):
     st = self.homestatus(home_id)
     return [dict(room_id=r.id, temperature=r.therm_measured_temperature, setpoint=r.therm_setpoint_temperature, setpoint_mode=r.therm_setpoint_mode) for r in st.home.rooms]
 
-# %% ../nbs/00_core.ipynb 49
+# %% ../nbs/00_core.ipynb 48
 @patch
 def setthermmode(self:Thermostat,
     home_id:str,   # Home ID
@@ -112,7 +112,7 @@ def setthermmode(self:Thermostat,
     if endtime: d['endtime'] = endtime
     return self._request('setthermmode', data=d)
 
-# %% ../nbs/00_core.ipynb 58
+# %% ../nbs/00_core.ipynb 57
 @patch
 def getmeasure(self:Thermostat,
     device_id:str,     # Device MAC address
@@ -129,7 +129,7 @@ def getmeasure(self:Thermostat,
     if end: d['date_end'] = end
     return self._request('getmeasure', data=d)
 
-# %% ../nbs/00_core.ipynb 65
+# %% ../nbs/00_core.ipynb 64
 @patch
 def createnewhomeschedule(self:Thermostat,
     home_id:str,       # Home ID
@@ -144,7 +144,7 @@ def createnewhomeschedule(self:Thermostat,
         'home_id': home_id, 'name': name, 'zones': zones, 
         'timetable': timetable, 'hg_temp': hg_temp, 'away_temp': away_temp})
 
-# %% ../nbs/00_core.ipynb 67
+# %% ../nbs/00_core.ipynb 66
 @patch
 def switchhomeschedule(self:Thermostat,
     home_id:str,       # Home ID
@@ -153,7 +153,7 @@ def switchhomeschedule(self:Thermostat,
     "Switch to a specific weekly schedule"
     return self._request('switchhomeschedule', data={'home_id': home_id, 'schedule_id': schedule_id})
 
-# %% ../nbs/00_core.ipynb 69
+# %% ../nbs/00_core.ipynb 68
 @patch
 def synchomeschedule(self:Thermostat,
     home_id:str,       # Home ID

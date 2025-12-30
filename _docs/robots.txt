@@ -1,0 +1,1 @@
+Sitemap: https://kafkasl.github.io/netatmo-thermostat/sitemap.xml
