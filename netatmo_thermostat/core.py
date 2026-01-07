@@ -5,12 +5,12 @@ __all__ = ['Thermostat', 'ControlBtn', 'SetpointDisplay', 'to_chart', 'TempChart
 
 # %% ../nbs/00_core.ipynb 2
 import os
+import json
+
 from time import time
+from fasthtml.common import *
 from fastcore.utils import patch
 from fastcore.xtras import dict2obj
-# from monsterui.all import ApexChart
-# from monsterui.core import *
-
 from monsterui.all import *
 
 from httpx import get as xget, post as xpost
@@ -261,7 +261,7 @@ def setup_thermostat_widget(
     @rt("/setpoint")
     def post(change: float, current_setpoint: float):
         new_temp = round(current_setpoint + change, 1)
-        t.setroomthermpoint(home_id, room_id, 'manual', new_temp, int(time.time() + 3600))
+        t.setroomthermpoint(home_id, room_id, 'manual', new_temp, int(time() + 3600))
         return (SetpointDisplay(new_temp),
                 ControlBtn("−", -0.5, new_temp, id="btn-minus", hx_swap_oob="true"),
                 ControlBtn("+", 0.5, new_temp, id="btn-plus", hx_swap_oob="true"))
