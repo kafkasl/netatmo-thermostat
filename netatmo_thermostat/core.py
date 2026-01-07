@@ -244,7 +244,8 @@ def setup_thermostat_widget(
     rt,        # FastHTML route decorator from fast_app()
     t,         # Thermostat instance (authenticated)
     home_id,   # Netatmo home ID
-    room_id,   # Room ID to control
+    room_id,   # Room ID to control,
+    **kwargs   # Extra kwargs for ThermostatWidget
 ):
     "Register thermostat routes and return the climate widget. Call once after fast_app()."
     
@@ -256,5 +257,5 @@ def setup_thermostat_widget(
                 ControlBtn("−", -0.5, new_temp, id="btn-minus", hx_swap_oob="true"),
                 ControlBtn("+", 0.5, new_temp, id="btn-plus", hx_swap_oob="true"))
 
-    return ThermostatWidget(t, home_id, room_id)
+    return ThermostatWidget(t, home_id, room_id, **kwargs)
 

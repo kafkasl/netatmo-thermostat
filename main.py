@@ -59,17 +59,6 @@ CLIENT_ID = os.environ['CLIENT_ID']
 CLIENT_SECRET = os.environ['CLIENT_SECRET']
 REFRESH_TOKEN = os.environ['REFRESH_TOKEN']
 
-# Initialize Thermostat globally and setup widget routes
-t = Thermostat(CLIENT_ID, CLIENT_SECRET, refresh_token=REFRESH_TOKEN)
-main_room, room_id = None, None
-try:
-    hd = t.homesdata()
-    home_id = hd.homes[0].id
-    room_id = hd.homes[0].rooms[0].id
-except Exception as e:
-    print(f"Error getting home & room id: {e}")
-    raise
-
 @rt('/login')
 @rt
 def login(req):
@@ -92,8 +81,22 @@ def logout(session):
     session.pop('auth', None)
     return RedirectResponse('/login', status_code=303)
 
+
+# Initialize Thermostat globally and setup widget routes
+t = Thermostat(CLIENT_ID, CLIENT_SECRET, refresh_token=REFRESH_TOKEN)
+main_room, room_id = None, None
+try:
+    hd = t.homesdata()
+    home_id = hd.homes[0].id
+    room_id = hd.homes[0].rooms[0].id
+except Exception as e:
+    print(f"Error getting home & room id: {e}")
+    raise
+
 # Register the library's widget routes (handle /setpoint POST)
-setup_thermostat_widget(rt, t, home_id, room_id)
+thermostat_widget = setup_thermostat_widget(rt, t, home_id, room_id, xtra_classes='relative')
+# TODO
+# solar_widget = setup_solar_widget(rt, t, home_id, room_id)
 
 
 def get_solar_data():
@@ -160,7 +163,8 @@ def get():
                 Div(
                     Div(
                         # Climate Widget (From SDK)
-                        ThermostatWidget(t, home_id, room_id, xtra_classes="relative"),
+                        thermostat_widget,
+                        # ThermostatWidget(t, home_id, room_id, xtra_classes='relative'),  
 
                         # Energy Widget (Custom)
                         DashboardCard("Energy", Div(
