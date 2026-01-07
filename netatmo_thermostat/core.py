@@ -5,12 +5,13 @@ __all__ = ['Thermostat', 'ControlBtn', 'SetpointDisplay', 'to_chart', 'TempChart
 
 # %% ../nbs/00_core.ipynb 2
 import os
+import json 
+
 from time import time
 from fastcore.utils import patch
 from fastcore.xtras import dict2obj
-# from monsterui.all import ApexChart
-# from monsterui.core import *
 
+from fasthtml.common import *
 from monsterui.all import *
 
 from httpx import get as xget, post as xpost
@@ -246,18 +247,7 @@ def setup_thermostat_widget(
     room_id,   # Room ID to control
 ):
     "Register thermostat routes and return the climate widget. Call once after fast_app()."
-    def ControlBtn(text, change, current_temp, **kwargs):
-        return Button(text, 
-            hx_post="/setpoint", 
-            hx_vals=json.dumps({'change': change, 'current_setpoint': current_temp}),
-            hx_target="#setpoint-display", hx_swap="outerHTML",
-            cls="w-10 h-10 rounded-full border border-black/5 bg-white/50 text-slate-700 text-lg flex items-center justify-center hover:bg-white hover:scale-105 transition-all shadow-sm cursor-pointer",
-            **kwargs)
-
-    def SetpointDisplay(temp):
-        return Span("Target ", Span(f"{temp}°", cls="text-temp-set font-semibold"),
-            id="setpoint-display", cls="text-slate-500 font-medium text-base")
-
+    
     @rt("/setpoint")
     def post(change: float, current_setpoint: float):
         new_temp = round(current_setpoint + change, 1)
@@ -266,16 +256,5 @@ def setup_thermostat_widget(
                 ControlBtn("−", -0.5, new_temp, id="btn-minus", hx_swap_oob="true"),
                 ControlBtn("+", 0.5, new_temp, id="btn-plus", hx_swap_oob="true"))
 
-    # Get current state
-    status = t.homestatus(home_id)
-    room = [r for r in status.home.rooms if r.id == room_id][0]
-    sp = room.therm_setpoint_temperature
+    return ThermostatWidget(t, home_id, room_id)
 
-    return Div(
-        Div(Span("CLIMATE", cls="font-display text-xs font-bold text-slate-400 uppercase tracking-widest"),
-            Div(ControlBtn("−", -0.5, sp, id="btn-minus"), ControlBtn("+", 0.5, sp, id="btn-plus"), cls="flex gap-2"),
-            cls="flex justify-between items-center mb-6"),
-        Div(Span(f"{room.therm_measured_temperature}°", cls="font-display text-6xl text-temp-real leading-none"),
-            SetpointDisplay(sp), cls="flex items-baseline gap-3 flex-wrap"),
-        cls="bg-white/85 backdrop-blur-xl border border-white/60 rounded-[32px] p-8 shadow-soft"
-    )
