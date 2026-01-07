@@ -208,3 +208,5 @@ __marimo__/
 
 .sesskey
 _proc
+.plash
+plash.env

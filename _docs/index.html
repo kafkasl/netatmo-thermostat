@@ -8,7 +8,7 @@
 
 <meta name="description" content="A simple Python SDK for the Netatmo Energy API (thermostats).">
 
-<title>netatmo-thermostat</title>
+<title>netatmo-energy – netatmo-thermostat</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fa8f4b57214c5fa5fd583aab1b651259.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-afa68f23e0c5eadd7683190cbe4fc099.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,12 +107,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="netatmo-thermostat">
+<meta property="og:title" content="netatmo-energy – netatmo-thermostat">
 <meta property="og:description" content="A simple Python SDK for the Netatmo Energy API (thermostats).">
+<meta property="og:image" content="https://kafkasl.github.io/netatmo-thermostat/widget-demo.png">
 <meta property="og:site_name" content="netatmo-thermostat">
-<meta name="twitter:title" content="netatmo-thermostat">
+<meta property="og:image:height" content="305">
+<meta property="og:image:width" content="334">
+<meta name="twitter:title" content="netatmo-energy – netatmo-thermostat">
 <meta name="twitter:description" content="A simple Python SDK for the Netatmo Energy API (thermostats).">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kafkasl.github.io/netatmo-thermostat/widget-demo.png">
+<meta name="twitter:image-height" content="305">
+<meta name="twitter:image-width" content="334">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-sidebar floating nav-fixed quarto-light">
@@ -138,7 +144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">netatmo-thermostat</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">netatmo-energy</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -157,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">netatmo-thermostat</span></a>
+ <span class="menu-text">netatmo-energy</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -176,16 +182,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#developer-guide" id="toc-developer-guide" class="nav-link active" data-scroll-target="#developer-guide">Developer Guide</a>
-  <ul class="collapse">
-  <li><a href="#install-netatmo_thermostat-in-development-mode" id="toc-install-netatmo_thermostat-in-development-mode" class="nav-link" data-scroll-target="#install-netatmo_thermostat-in-development-mode">Install netatmo_thermostat in Development mode</a></li>
-  </ul></li>
-  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a>
-  <ul class="collapse">
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
-  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation">Documentation</a></li>
-  </ul></li>
-  <li><a href="#how-to-use" id="toc-how-to-use" class="nav-link" data-scroll-target="#how-to-use">How to use</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
+  <li><a href="#thermostat-widget" id="toc-thermostat-widget" class="nav-link" data-scroll-target="#thermostat-widget">Thermostat Widget</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/kafkasl/netatmo-thermostat/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.html.md"><i class="bi bi-file-code"></i>CommonMark</a></li></ul></div></nav>
     </div>
@@ -194,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">netatmo-thermostat</h1>
+<h1 class="title">netatmo-energy</h1>
 </div>
 
 <div>
@@ -217,47 +218,107 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
-<p>This file will become your README and also the index of your documentation.</p>
-<section id="developer-guide" class="level2">
-<h2 class="anchored" data-anchor-id="developer-guide">Developer Guide</h2>
-<p>If you are new to using <code>nbdev</code> here are some useful pointers to get you started.</p>
-<section id="install-netatmo_thermostat-in-development-mode" class="level3">
-<h3 class="anchored" data-anchor-id="install-netatmo_thermostat-in-development-mode">Install netatmo_thermostat in Development mode</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make sure netatmo_thermostat package is installed in development mode</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip install <span class="at">-e</span> .</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># make changes under nbs/ directory</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ...</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># compile to have changes apply to netatmo_thermostat</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nbdev_prepare</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<ol type="1">
+<li>Create an app at <a href="https://dev.netatmo.com">dev.netatmo.com</a> to get your API credentials</li>
+<li>Either create a <code>.env</code> file:</li>
+</ol>
+<pre><code>CLIENT_ID=your_client_id
+CLIENT_SECRET=your_client_secret
+ACCESS_TOKEN=your_access_token
+REFRESH_TOKEN=your_refresh_token</code></pre>
+<p>of pass in the vars to <code>Thermostat(client_id, client_secret, access_token, refresh_token)</code> when initializing the API client.</p>
 </section>
 <section id="usage" class="level2">
 <h2 class="anchored" data-anchor-id="usage">Usage</h2>
-<section id="installation" class="level3">
-<h3 class="anchored" data-anchor-id="installation">Installation</h3>
-<p>Install latest from the GitHub <a href="https://github.com/kafkasl/netatmo-thermostat">repository</a>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip install git+https://github.com/kafkasl/netatmo-thermostat.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>or from <a href="https://anaconda.org/kafkasl/netatmo-thermostat">conda</a></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> conda install <span class="at">-c</span> kafkasl netatmo_thermostat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>or from <a href="https://pypi.org/project/netatmo-thermostat/">pypi</a></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip install netatmo_thermostat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="documentation" class="level3">
-<h3 class="anchored" data-anchor-id="documentation">Documentation</h3>
-<p>Documentation can be found hosted on this GitHub <a href="https://github.com/kafkasl/netatmo-thermostat">repository</a>’s <a href="https://kafkasl.github.io/netatmo-thermostat/">pages</a>. Additionally you can find package manager specific guidelines on <a href="https://anaconda.org/kafkasl/netatmo-thermostat">conda</a> and <a href="https://pypi.org/project/netatmo-thermostat/">pypi</a> respectively.</p>
-</section>
-</section>
-<section id="how-to-use" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-use">How to use</h2>
-<p>Fill me in please! Don’t forget code examples:</p>
-<div id="cell-14" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="op">+</span><span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="273dd0a3" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> Thermostat()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>hd <span class="op">=</span> t.homesdata()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>home_id <span class="op">=</span> hd.homes[<span class="dv">0</span>].<span class="bu">id</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>room_id <span class="op">=</span> hd.homes[<span class="dv">0</span>].rooms[<span class="dv">0</span>].<span class="bu">id</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Get current status</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>t.room_temperatures(home_id)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<pre><code>2</code></pre>
+<pre><code>[{'room_id': '3352988001',
+  'temperature': 21.7,
+  'setpoint': 21.5,
+  'setpoint_mode': 'manual'}]</code></pre>
 </div>
 </div>
+<div id="b6fa9c4e" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set room to 20°C for 1 hour</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>t.setroomthermpoint(home_id, room_id, mode<span class="op">=</span><span class="st">'manual'</span>, temp<span class="op">=</span><span class="dv">21</span>, endtime<span class="op">=</span><span class="bu">int</span>(time())<span class="op">+</span><span class="dv">3600</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>{<span class="st">'status'</span>: <span class="st">'ok'</span>, <span class="st">'time_server'</span>: <span class="dv">1767753063</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="454f62cc" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>t.room_temperatures(home_id)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>[{'room_id': '3352988001',
+  'temperature': 21.7,
+  'setpoint': 21,
+  'setpoint_mode': 'manual'}]</code></pre>
+</div>
+</div>
+<div id="1ad5cb6f" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get temperature history</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> t.getroommeasure(home_id, room_id)[<span class="dv">0</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(r), r[<span class="st">'value'</span>][:<span class="dv">3</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>(['beg_time', 'step_time', 'value'], [[22.2], [22.2], [22.1]])</code></pre>
+</div>
+</div>
+</section>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<ul>
+<li><code>homesdata()</code> — get homes and topology</li>
+<li><code>homestatus(home_id)</code> — current device status</li>
+<li><code>room_temperatures(home_id)</code> — quick view of all room temps</li>
+<li><code>getroommeasure(home_id, room_id, ...)</code> — temperature history</li>
+<li><code>setroomthermpoint(home_id, room_id, mode, ...)</code> — set room temperature</li>
+<li><code>setthermmode(home_id, mode)</code> — set home mode (schedule/away/hg)</li>
+<li><code>getmeasure(device_id, ...)</code> — boiler history</li>
+<li><code>createnewhomeschedule(...)</code> — create weekly schedule</li>
+<li><code>synchomeschedule(...)</code> — modify schedule</li>
+<li><code>switchhomeschedule(home_id, schedule_id)</code> — activate schedule</li>
+</ul>
+</section>
+<section id="thermostat-widget" class="level2">
+<h2 class="anchored" data-anchor-id="thermostat-widget">Thermostat Widget</h2>
+<p>The library includes a ready-to-use FastHTML/MonsterUI thermostat widget for building web dashboards. Use <a href="https://kafkasl.github.io/netatmo-thermostat/core.html#setup_thermostat_widget"><code>setup_thermostat_widget()</code></a> to register the routes and get the widget component:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fasthtml.common <span class="im">import</span> fast_app</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> netatmo_thermostat <span class="im">import</span> Thermostat, setup_thermostat_widget</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>app, rt <span class="op">=</span> fast_app()</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> Thermostat()</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Get your home and room IDs</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>homes <span class="op">=</span> t.homesdata()</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>home_id <span class="op">=</span> homes.homes[<span class="dv">0</span>].<span class="bu">id</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>room_id <span class="op">=</span> homes.homes[<span class="dv">0</span>].rooms[<span class="dv">0</span>].<span class="bu">id</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup widget (registers /setpoint route and returns the component)</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>climate_widget <span class="op">=</span> setup_thermostat_widget(rt, t, home_id, room_id)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="at">@rt</span>(<span class="st">"/"</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get():</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> climate_widget</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="widget-demo.png" class="img-fluid figure-img"></p>
+<figcaption>Thermostat Widget</figcaption>
+</figure>
+</div>
+<p>The widget displays current temperature, target setpoint with +/- controls, and a temperature history chart. Clicking the controls makes HTMX requests to adjust the thermostat in real-time.</p>
+<p><strong>Note:</strong> the widget uses MonsterUI’s ApexCharts so you will have to include this in your headers <code>Theme.blue.headers(apex_charts=True)</code></p>
+</section>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>Inspired by <a href="https://x.com/karpathy">Andrej Karpathy’s tweet</a> about using Claude Code for home automation. Instead of burning tokens on network scanning, this takes the “boring” approach: read the docs, write a simple SDK.</p>
 
 
 </section>

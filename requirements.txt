@@ -1,0 +1,4 @@
+python-fasthtml
+monsterui
+python-dotenv
+netatmo-thermostat
