@@ -40,4 +40,11 @@ d = { 'settings': { 'branch': 'main',
                                                                                        'netatmo_thermostat/core.py'),
                                          'netatmo_thermostat.core.setup_thermostat_widget': ( 'core.html#setup_thermostat_widget',
                                                                                               'netatmo_thermostat/core.py'),
-                                         'netatmo_thermostat.core.to_chart': ('core.html#to_chart', 'netatmo_thermostat/core.py')}}}
+                                         'netatmo_thermostat.core.to_chart': ('core.html#to_chart', 'netatmo_thermostat/core.py')},
+            'netatmo_thermostat.solar': { 'netatmo_thermostat.solar.SolaX': ('solar.html#solax', 'netatmo_thermostat/solar.py'),
+                                          'netatmo_thermostat.solar.SolaX.__init__': ( 'solar.html#solax.__init__',
+                                                                                       'netatmo_thermostat/solar.py'),
+                                          'netatmo_thermostat.solar.SolaX.getRealtimeInfo': ( 'solar.html#solax.getrealtimeinfo',
+                                                                                              'netatmo_thermostat/solar.py'),
+                                          'netatmo_thermostat.solar.SolarWidget': ( 'solar.html#solarwidget',
+                                                                                    'netatmo_thermostat/solar.py')}}}
