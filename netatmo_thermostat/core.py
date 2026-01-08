@@ -257,5 +257,5 @@ def setup_thermostat_widget(
                 ControlBtn("−", -0.5, new_temp, id="btn-minus", hx_swap_oob="true"),
                 ControlBtn("+", 0.5, new_temp, id="btn-plus", hx_swap_oob="true"))
 
-    return ThermostatWidget(t, home_id, room_id)
+    return ThermostatWidget(t, home_id, room_id, **kwargs)
 
