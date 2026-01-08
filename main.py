@@ -8,6 +8,7 @@ from fasthtml.common import *
 from fasthtml.oauth import GoogleAppClient, OAuth
 from dotenv import load_dotenv
 from netatmo_thermostat.core import Thermostat, ThermostatWidget, setup_thermostat_widget
+from netatmo_thermostat.solar import SolaX, SolarWidget
 
 load_dotenv()
 
@@ -95,21 +96,11 @@ except Exception as e:
 
 # Register the library's widget routes (handle /setpoint POST)
 thermostat_widget = setup_thermostat_widget(rt, t, home_id, room_id, xtra_classes='relative')
-# TODO
-# solar_widget = setup_solar_widget(rt, t, home_id, room_id)
+
+# Initialize SolaX
+s = SolaX()
 
 
-def get_solar_data():
-    """Generate generic solar data (mock) as SDK doesn't support it."""
-    now = int(time())
-    solar_timeline = [now * 1000 - (i * 3600 * 1000) for i in range(24)][::-1]
-    
-    return {
-        'solar_prod': 4.8, 
-        'solar_cons': 1.2, 
-        'history_solar_prod': [[t, round(random.uniform(0, 5), 2)] for t in solar_timeline],
-        'history_solar_cons': [[t, round(random.uniform(0.5, 2), 2)] for t in solar_timeline]
-    }
 
 # Components
 def DashboardCard(title, children, extra_classes=""):
@@ -124,30 +115,6 @@ def DashboardCard(title, children, extra_classes=""):
 
 @rt("/")
 def get():
-    # Fetch data
-    solar_data = get_solar_data()
-    
-    # Solar Chart Script (Custom)
-    solar_json = json.dumps([{ 'name': 'Production', 'data': solar_data['history_solar_prod'] }, { 'name': 'Consumption', 'data': solar_data['history_solar_cons'] }])
-    
-    solar_chart_script = Script(f"""
-        const commonOptions = {{
-            chart: {{ type: 'area', height: '100%', parentHeightOffset: 0, sparkline: {{ enabled: true }}, animations: {{ enabled: true }} }},
-            stroke: {{ curve: 'smooth', width: 3 }},
-            fill: {{ type: 'gradient', gradient: {{ opacityFrom: 0.15, opacityTo: 0 }} }},
-            tooltip: {{ theme: 'light', x: {{ format: 'dd MMM HH:mm' }} }},
-            grid: {{ padding: {{ top: 10, bottom: 10, left: 0, right: 0 }} }},
-            xaxis: {{ type: 'datetime', tooltip: {{ enabled: false }}, labels: {{ show: false }}, axisBorder: {{ show: false }}, axisTicks: {{ show: false }} }}
-        }};
-
-        new ApexCharts(document.querySelector("#solarChart"), {{
-            ...commonOptions,
-            series: {solar_json},
-            colors: ['#fdcb6e', '#ff7675'], // Warm Sun & Soft Red
-            fill: {{ type: 'gradient', gradient: {{ shadeIntensity: 1, opacityFrom: 0.25, opacityTo: 0.05, stops: [0, 90, 100] }} }}
-        }}).render();
-    """)
-
     return Title("Tordera Dashboard"), Body(
         Div(
             # Main Flex/Grid Container
@@ -166,33 +133,8 @@ def get():
                         thermostat_widget,
                         # ThermostatWidget(t, home_id, room_id, xtra_classes='relative'),  
 
-                        # Energy Widget (Custom)
-                        DashboardCard("Energy", Div(
-                            Div(
-                                Div(
-                                    Span("Production", cls="text-xs text-slate-400 uppercase tracking-wide"),
-                                    Span(
-                                        f"{solar_data['solar_prod']} ", Span("kW", cls="text-base font-normal"),
-                                        cls="font-display text-3xl font-semibold text-solar-prod"
-                                    ),
-                                    cls="flex flex-col"
-                                ),
-                                Div(
-                                    Span("Consumption", cls="text-xs text-slate-400 uppercase tracking-wide"),
-                                    Span(
-                                        f"{solar_data['solar_cons']} ", Span("kW", cls="text-base font-normal"),
-                                        cls="font-display text-3xl font-semibold text-solar-cons"
-                                    ),
-                                    cls="flex flex-col"
-                                ),
-                                cls="flex items-baseline justify-between mb-4 mt-2"
-                            ),
-                            Div(
-                                Div(id="solarChart"),
-                                cls="mt-auto -mx-3 h-[150px]"
-                            ),
-                            cls="flex flex-col h-full"
-                        )),
+                        # Energy Widget (From SolaX)
+                        SolarWidget(s, xtra_classes='relative'), 
                         
                         cls="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 w-full max-w-4xl" # Widget Grid
                     ),
@@ -203,7 +145,6 @@ def get():
             ),
             cls="w-full min-h-screen"
         ),
-        solar_chart_script,
         cls="bg-slate-50 text-slate-700 min-h-screen m-0 p-0",
         style="background-image: radial-gradient(at 0% 0%, hsla(190, 100%, 95%, 1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(220, 100%, 92%, 1) 0, transparent 50%);"
     )
