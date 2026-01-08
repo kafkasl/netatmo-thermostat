@@ -252,7 +252,7 @@ def setup_thermostat_widget(
     @rt("/setpoint")
     def post(change: float, current_setpoint: float):
         new_temp = round(current_setpoint + change, 1)
-        t.setroomthermpoint(home_id, room_id, 'manual', new_temp, int(time.time() + 3600))
+        t.setroomthermpoint(home_id, room_id, 'manual', new_temp, int(time() + 3600))
         return (SetpointDisplay(new_temp),
                 ControlBtn("−", -0.5, new_temp, id="btn-minus", hx_swap_oob="true"),
                 ControlBtn("+", 0.5, new_temp, id="btn-plus", hx_swap_oob="true"))
